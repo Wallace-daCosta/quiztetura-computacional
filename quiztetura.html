@@ -6,47 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruzadinha - Arquitetura Computacional</title>
     <link rel="stylesheet" href="quiztetura.CSS">
+    <link rel="icon" type="image/x-icon" href="imagemJogo.png">
     <script src="quiztetura.js"></script>
 </head>
 
-
-<body onload="onloadEsconder()">
-
-    <!-- BLOCO 1: VISITANTE (sem sessão ativa)
-     Mantido escondido (hidden) nesta versão, pois o jogo roda só no front-end,
-     sem login. Para reativar no futuro: tire o "hidden" daqui e coloque no BLOCO 2. -->
-    <div id="layoutVisitante" hidden>
-        <div class="fundoQuiz">
-            <!-- COLUNA ESQUERDA -->
-            <section class="painelLateral">
-                <a href="index.html" class="logoHome" title="Voltar para a home">
-                    <img class="logoQuiz" src="assets/logo.png" alt="Logo - voltar para a home">
-                </a>
-                <p class="saudacao">
-                    Olá, <span class="nomeDestaque">visitante</span>.<br>
-                    Venha testar alguns conhecimentos!
-                </p>
-            </section>
-
-            <!-- COLUNA CENTRAL -->
-            <section class="areaPrincipal">
-                <h1 class='tituloVisitante'>Olá, visitante!</h1>
-                <h3 class='subtituloVisitante'>Seja bem-vindo à Cruzadinha!</h3>
-                <p class='textoVisitante'>
-                    Cadastre-se ou faça login em sua conta para poder ter acesso às cruzadinhas disponíveis!
-                </p>
-            </section>
-        </div>
-    </div>
 
     <!-- BLOCO 2: JOGO -->
     <div id="layoutQuiz">
         <div class="fundoQuiz">
             <!-- COLUNA ESQUERDA -->
             <section class="painelLateral">
-                <a href="index.html" class="logoHome" title="Voltar para a home">
-                    <img class="logoQuiz" src="assets/logo.png" alt="Logo - voltar para a home">
-                </a>
+    
+                <img class="logoQuiz" src="imagemJogo.png" alt="Logo - voltar para a home">
 
                 <p class="saudacao">
                     Olá, <span id="nomeVisitante" class="nomeDestaque">visitante</span>.<br>
