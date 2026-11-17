@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruzadinha - Arquitetura Computacional</title>
+    <link rel="stylesheet" href="quiztetura.CSS">
+    <script src="quiztetura.js"></script>
+</head>
+
+
+<body onload="onloadEsconder()">
+
+    <!-- BLOCO 1: VISITANTE (sem sessão ativa)
+     Mantido escondido (hidden) nesta versão, pois o jogo roda só no front-end,
+     sem login. Para reativar no futuro: tire o "hidden" daqui e coloque no BLOCO 2. -->
+    <div id="layoutVisitante" hidden>
+        <div class="fundoQuiz">
+            <!-- COLUNA ESQUERDA -->
+            <section class="painelLateral">
+                <a href="index.html" class="logoHome" title="Voltar para a home">
+                    <img class="logoQuiz" src="assets/logo.png" alt="Logo - voltar para a home">
+                </a>
+                <p class="saudacao">
+                    Olá, <span class="nomeDestaque">visitante</span>.<br>
+                    Venha testar alguns conhecimentos!
+                </p>
+            </section>
+
+            <!-- COLUNA CENTRAL -->
+            <section class="areaPrincipal">
+                <h1 class='tituloVisitante'>Olá, visitante!</h1>
+                <h3 class='subtituloVisitante'>Seja bem-vindo à Cruzadinha!</h3>
+                <p class='textoVisitante'>
+                    Cadastre-se ou faça login em sua conta para poder ter acesso às cruzadinhas disponíveis!
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <!-- BLOCO 2: JOGO -->
+    <div id="layoutQuiz">
+        <div class="fundoQuiz">
+            <!-- COLUNA ESQUERDA -->
+            <section class="painelLateral">
+                <a href="index.html" class="logoHome" title="Voltar para a home">
+                    <img class="logoQuiz" src="assets/logo.png" alt="Logo - voltar para a home">
+                </a>
+
+                <p class="saudacao">
+                    Olá, <span id="nomeVisitante" class="nomeDestaque">visitante</span>.<br>
+                    Teste alguns conhecimentos!
+                </p>
+
+                <div id="pontuacao" class="flex-colunar">
+                    <div class="contador contador-acertos">
+                        <span class="contadorRotulo">Acertos</span>
+                        <span id="spanCertas" class="contadorValor">0</span>
+                    </div>
+                    <div class="contador contador-erros">
+                        <span class="contadorRotulo">Erros</span>
+                        <span id="spanErradas" class="contadorValor">0</span>
+                    </div>
+                    <div class="contador contador-percentual">
+                        <span class="contadorRotulo">Aproveitamento</span>
+                        <span id="spanPercentual" class="contadorValor">0%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUNA CENTRAL -->
+            <section class="areaPrincipal">
+                <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR CRUZADINHA</button>
+
+                <div id="jogo" class="flex-colunar">
+                    <!-- Caixa superior: contador de palavras e instrução -->
+                    <div id="caixaPergunta" class="caixa">
+                        <div id="infoQuestao">
+                            <span>Palavras certas: <span id="spanNumeroDaQuestaoAtual">0</span> de <span
+                                    id="qtdQuestoes"></span>
+                                palavras.</span>
+                        </div>
+                        <div id="perguntaDaQuestaoAtual">
+                            <span id="spanQuestaoExibida" class="text-bold">Leia as pistas e digite as letras direto
+                                nas casas do tabuleiro.</span>
+                        </div>
+                    </div>
+
+                    <!-- Caixa inferior: tabuleiro, pistas e botões -->
+                    <div id="caixaOpcoes" class="caixa">
+                        <div id="infoAlternativas">
+                            <span><em>Clique em uma casa e digite a letra:</em></span>
+                        </div>
+
+                        <!-- O tabuleiro é montado pelo JavaScript (função montarTabuleiro) -->
+                        <div class="areaTabuleiro">
+                            <div id="tabuleiro"></div>
+                        </div>
+
+                        <!-- As pistas também são montadas pelo JavaScript -->
+                        <div id="pistas">
+                            <div class="colunaPistas">
+                                <span class="configRotulo">Horizontais</span>
+                                <ul id="listaHorizontais"></ul>
+                            </div>
+                            <div class="colunaPistas">
+                                <span class="configRotulo">Verticais</span>
+                                <ul id="listaVerticais"></ul>
+                            </div>
+                        </div>
+
+                        <div id="botoes">
+                            <button onclick="conferir()" id="btnConferir">Conferir</button>
+                            <button onclick="reiniciar()" id="btnReiniciar">Reiniciar</button>
+                        </div>
+
+                        <div id="pontuacaoFinalJogo" class="flex-colunar">
+                            <span id="pontuacaoFinal">Pontuação Final:
+                                <span id="spanPontuacaoFinal">***</span>
+                            </span>
+                            <span id="msgFinal">***</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

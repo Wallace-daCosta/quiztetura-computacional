@@ -1,0 +1,367 @@
+/* =========================================================
+   PALETA (regra 60 / 30 / 10)
+   60% principal   -> Dark Void (fundos do site, painéis, caixas, casas)
+   30% secundário  -> Cyber Purple (bordas, hovers, botões de UI) + Deep Blue (navbar, divisórias, glow)
+   10% complementar-> Matrix Green (CTAs, sucesso) + Laser Red (erros, alertas)
+   Texto principal -> Terminal White
+   ========================================================= */
+:root {
+    --dark-void: #0B0F19;
+    --cyber-purple: #9D00FF;
+    --matrix-green: #00FF66;
+    --laser-red: #FF0055;
+    --deep-blue: #0066FF;
+    --terminal-white: #F1F5F9;
+
+    /* Tamanho de cada casa do tabuleiro */
+    --tamanhoCasa: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    padding-top: 0;
+    background: var(--dark-void);
+    color: var(--terminal-white);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ===== Utilitários usados pelo JS ===== */
+.flex-colunar { display: flex; flex-direction: column; }
+.text-bold { font-weight: bold; }
+
+.text-success-with-bg { background: var(--matrix-green); color: var(--dark-void); }
+.text-danger-with-bg  { background: var(--laser-red); color: var(--terminal-white); }
+.text-warning-with-bg { background: var(--deep-blue); color: var(--terminal-white); }
+
+/* ===== Layout geral: 2 colunas (lateral + central) ===== */
+#layoutVisitante,
+#layoutQuiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 20px 16px 24px;
+}
+
+.fundoQuiz {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 3fr;
+    gap: 16px;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    background: var(--dark-void);
+    border: 2px solid var(--cyber-purple);
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0, 102, 255, 0.45);
+}
+
+/* ===== Coluna esquerda ===== */
+.painelLateral {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background: var(--dark-void);
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+}
+
+.logoHome {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 100px;
+}
+
+.logoQuiz {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .2s;
+}
+
+.logoHome:hover .logoQuiz { transform: scale(1.05); }
+
+.saudacao {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.nomeDestaque { font-weight: bold; color: var(--matrix-green); }
+
+/* Contadores */
+#pontuacao {
+    gap: 12px;
+    margin-top: auto;
+}
+
+.contador,
+#cardConfig {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 8px;
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+    background: var(--dark-void);
+}
+
+.contadorRotulo,
+.configRotulo {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.contadorValor { font-size: 1.6rem; font-weight: bold; }
+
+.contador-acertos { border-color: var(--matrix-green); }
+.contador-acertos .contadorValor { color: var(--matrix-green); }
+.contador-erros { border-color: var(--laser-red); }
+.contador-erros .contadorValor { color: var(--laser-red); }
+
+/* ===== Coluna central ===== */
+.areaPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* ===== Tela de visitante ===== */
+.tituloVisitante,
+.subtituloVisitante {
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+}
+
+.textoVisitante {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 36px;
+}
+
+#painelVisitante {
+    justify-content: center;
+}
+
+.btnCadastrarVisitante,
+.btnLoginVisitante {
+    display: flex;
+    justify-content: center;
+    border: solid 2px var(--dark-void);
+    padding: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btnLoginVisitante {
+    color: var(--cyber-purple);
+    background-color: var(--dark-void);
+    border-color: var(--cyber-purple);
+    margin-top: 10px;
+}
+
+.btnCadastrarVisitante {
+    color: var(--dark-void);
+    background-color: var(--matrix-green);
+    margin-bottom: 10px;
+}
+
+/* ===== Jogo e botões ===== */
+#btnIniciarQuiz {
+    align-self: center;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--dark-void);
+    background: var(--matrix-green);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#btnIniciarQuiz:hover { filter: brightness(1.15); }
+
+#jogo {
+    display: none;
+    flex: 1;
+    gap: 16px;
+}
+
+.caixa {
+    padding: 16px 20px;
+    background: var(--dark-void);
+    border: 2px solid var(--deep-blue);
+    border-radius: 8px;
+}
+
+/* Caixa de cima (contador de palavras + instrução) */
+#caixaPergunta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 110px;
+    justify-content: center;
+}
+
+#infoQuestao { font-size: 0.85rem; opacity: .75; }
+#perguntaDaQuestaoAtual { font-size: 1.25rem; }
+
+/* Caixa de baixo (tabuleiro + pistas + botões) */
+#caixaOpcoes {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 14px;
+    min-height: 280px;
+}
+
+/* ===== Tabuleiro da cruzadinha ===== */
+.areaTabuleiro {
+    overflow: auto;
+    padding: 8px 0;
+}
+
+#tabuleiro {
+    display: grid;
+    grid-auto-rows: var(--tamanhoCasa);
+    gap: 2px;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.casa {
+    position: relative;
+    width: var(--tamanhoCasa);
+    height: var(--tamanhoCasa);
+    background: var(--dark-void);
+    color: var(--terminal-white);
+    border: 1px solid var(--cyber-purple);
+    border-radius: 3px;
+}
+
+.casa:focus-within {
+    border-color: var(--matrix-green);
+    box-shadow: 0 0 6px var(--matrix-green);
+}
+
+.casaVazia {
+    width: var(--tamanhoCasa);
+    height: var(--tamanhoCasa);
+}
+
+.numeroCasa {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    font-size: 9px;
+    line-height: 1;
+    opacity: .8;
+    pointer-events: none;
+}
+
+.celula {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    caret-color: var(--matrix-green);
+}
+
+/* ===== Pistas ===== */
+#pistas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.colunaPistas {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.colunaPistas ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+}
+
+.colunaPistas li {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    border: 1px solid var(--deep-blue);
+    border-radius: 6px;
+}
+
+#botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+#botoes button {
+    flex: 1 1 150px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--dark-void);
+    background: var(--matrix-green);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#botoes button:hover { filter: brightness(1.15); }
+
+#btnReiniciar {
+    color: var(--terminal-white);
+    background: var(--cyber-purple);
+}
+
+#botoes button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+#pontuacaoFinalJogo {
+    gap: 4px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--cyber-purple);
+    font-size: 0.9rem;
+}
+
+#msgFinal { padding: 6px 8px; border-radius: 6px; }
