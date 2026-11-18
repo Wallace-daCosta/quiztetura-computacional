@@ -1,4 +1,4 @@
-       /* BANCO DE CRUZADINHAS (Cruzadinha → Palavras)
+/* BANCO DE CRUZADINHAS (Cruzadinha → Palavras)
    ---------------------------------------------------------
    Cada palavra do tabuleiro é um objeto com:
        palavra: a resposta (pode ter acento/minúscula, o jogo normaliza)
@@ -16,22 +16,22 @@
    - Os NÚMEROS das pistas são calculados sozinhos pela posição.
    - Para desenhar outro tabuleiro, planeje em papel/planilha e
      ajuste linha, coluna e direcao de cada palavra.
-   - Os dados abaixo são MOCADOS (exemplo): troque pelos seus termos.
+   - O tabuleiro abaixo tem 9 linhas x 17 colunas; as 12 palavras só se encostam nos cruzamentos.
    ========================================================= */
 const quizzes = {
     1: [
-        { palavra: "PROCESSADOR", pista: "Pista de exemplo 1: substitua pelo conceito com suas palavras.",  linha: 6,  coluna: 0,  direcao: "H" },
-        { palavra: "PIPELINE",    pista: "Pista de exemplo 2: substitua pelo conceito com suas palavras.",  linha: 6,  coluna: 0,  direcao: "V" },
-        { palavra: "MEMORIA",     pista: "Pista de exemplo 3: substitua pelo conceito com suas palavras.",  linha: 3,  coluna: 2,  direcao: "V" },
-        { palavra: "BARRAMENTO",  pista: "Pista de exemplo 4: substitua pelo conceito com suas palavras.",  linha: 0,  coluna: 4,  direcao: "V" },
-        { palavra: "TRANSISTOR",  pista: "Pista de exemplo 5: substitua pelo conceito com suas palavras.",  linha: 2,  coluna: 6,  direcao: "V" },
-        { palavra: "DRAM",        pista: "Pista de exemplo 6: substitua pelo conceito com suas palavras.",  linha: 6,  coluna: 8,  direcao: "V" },
-        { palavra: "RISC",        pista: "Pista de exemplo 7: substitua pelo conceito com suas palavras.",  linha: 6,  coluna: 10, direcao: "V" },
-        { palavra: "CACHE",       pista: "Pista de exemplo 8: substitua pelo conceito com suas palavras.",  linha: 9,  coluna: 10, direcao: "H" },
-        { palavra: "ENDERECO",    pista: "Pista de exemplo 9: substitua pelo conceito com suas palavras.",  linha: 13, coluna: 0,  direcao: "H" },
-        { palavra: "BYTE",        pista: "Pista de exemplo 10: substitua pelo conceito com suas palavras.", linha: 0,  coluna: 4,  direcao: "H" },
-        { palavra: "REGISTRADOR", pista: "Pista de exemplo 11: substitua pelo conceito com suas palavras.", linha: 11, coluna: 6,  direcao: "H" },
-        { palavra: "ISA",         pista: "Pista de exemplo 12: substitua pelo conceito com suas palavras.", linha: 11, coluna: 0,  direcao: "H" }
+        { palavra: "ULA", pista: "Parte da CPU que faz as contas e as operações lógicas.", linha: 4, coluna: 8, direcao: "V" },
+        { palavra: "UC", pista: "Parte do processador que decodifica instruções e coordena o trabalho dos outros blocos.", linha: 5, coluna: 13, direcao: "H" },
+        { palavra: "REGISTRADORES", pista: "Pequenos espaços dentro do processador, os mais rápidos, que guardam operandos temporariamente.", linha: 6, coluna: 1, direcao: "H" },
+        { palavra: "RAM", pista: "Área principal do computador onde ficam os programas em uso; perde tudo sem energia.", linha: 6, coluna: 1, direcao: "V" },
+        { palavra: "ROM", pista: "Chip com instruções gravadas na fábrica, inalteráveis pelo usuário e mantidas sem energia.", linha: 0, coluna: 5, direcao: "V" },
+        { palavra: "EEPROM", pista: "Chip não volátil regravável um byte por vez, sem precisar ser removido da placa.", linha: 3, coluna: 16, direcao: "V" },
+        { palavra: "CACHE", pista: "Pequena memória veloz entre processador e memória principal que guarda cópias dos itens mais usados.", linha: 3, coluna: 12, direcao: "H" },
+        { palavra: "MEMORIADEMASSA", pista: "Guarda programas e arquivos de forma permanente, com grande capacidade, como HD e SSD.", linha: 8, coluna: 1, direcao: "H" },
+        { palavra: "DMA", pista: "Recurso que move blocos entre periféricos e a RAM sem ocupar o processador.", linha: 0, coluna: 1, direcao: "V" },
+        { palavra: "ADDRESSBUS", pista: "Via de sentido único pela qual o processador indica a posição que quer acessar.", linha: 4, coluna: 0, direcao: "H" },
+        { palavra: "DATABUS", pista: "Via de dois sentidos que transporta o conteúdo lido e gravado entre os componentes.", linha: 0, coluna: 13, direcao: "V" },
+        { palavra: "MICROCONTROLADOR", pista: "Chip único com processador, memória e portas de entrada e saída, usado em sistemas embarcados.", linha: 1, coluna: 1, direcao: "H" }
     ]
 };
 
