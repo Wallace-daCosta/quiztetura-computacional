@@ -7,16 +7,17 @@
     <title>Cruzadinha - Arquitetura Computacional</title>
     <link rel="stylesheet" href="quiztetura.CSS">
     <link rel="icon" type="image/x-icon" href="imagemJogo.png">
-    <script src="quiztetura.js"></script>
+    <script src="quiztetura.js" defer></script>
 </head>
 
+<body>
 
     <!-- BLOCO 2: JOGO -->
     <div id="layoutQuiz">
         <div class="fundoQuiz">
             <!-- COLUNA ESQUERDA -->
             <section class="painelLateral">
-    
+
                 <img class="logoQuiz" src="imagemJogo.png" alt="Logo - voltar para a home">
 
                 <p class="saudacao">
@@ -42,10 +43,35 @@
 
             <!-- COLUNA CENTRAL -->
             <section class="areaPrincipal">
-                <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR CRUZADINHA</button>
+                <button id="btnIniciarQuiz"
+                    onclick="iniciarQuiz(); document.getElementById('instrucoes').hidden = true;">INICIAR
+                    CRUZADINHA</button>
+
+                <!-- INSTRUÇÕES: aparecem abaixo do botão e somem quando o jogo começa -->
+                <div id="instrucoes" class="instrucoes">
+                    <h2 class="instrucoesTitulo">Como jogar</h2>
+                    <p class="instrucoesContexto">
+                        Este é um jogo de palavras cruzadas temático de <strong>Arquitetura Computacional</strong>,
+                        criado para fixar os conhecimentos da disciplina de forma ativa e divertida. Todas as
+                        palavras e dicas são voltadas para o tema.
+                    </p>
+                    <ol class="instrucoesLista">
+                        <li>O tabuleiro tem <strong>12 palavras</strong> cruzadas entre si: cada palavra cruza com pelo
+                            menos uma outra.</li>
+                        <li>As pistas são numeradas e separadas em <strong>Horizontais</strong> e
+                            <strong>Verticais</strong>.
+                        </li>
+                        <li>Clique em uma casa e <strong>digite as letras direto no tabuleiro</strong>.</li>
+                        <li>Preencha <strong>todas as colunas e fileiras</strong> antes de conferir.</li>
+                        <li>Clique em <strong>Conferir</strong> para ver quais palavras estão certas e quais estão
+                            erradas.</li>
+                        <li>Acompanhe o contador de acertos, por exemplo: <strong>"8 de 12 palavras"</strong>.</li>
+                        <li>Use <strong>Reiniciar</strong> para limpar o tabuleiro e tentar de novo.</li>
+                    </ol>
+                </div>
 
                 <div id="jogo" class="flex-colunar">
-                    <!-- Caixa superior: contador de palavras e instrução -->
+                    <!-- Caixa superior: contador de palavras e instrução (agora em uma linha só) -->
                     <div id="caixaPergunta" class="caixa">
                         <div id="infoQuestao">
                             <span>Palavras certas: <span id="spanNumeroDaQuestaoAtual">0</span> de <span
@@ -58,7 +84,7 @@
                         </div>
                     </div>
 
-                    <!-- Caixa inferior: tabuleiro, pistas e botões -->
+                    <!-- Caixa inferior: tabuleiro (esquerda) + pistas (direita) + botões -->
                     <div id="caixaOpcoes" class="caixa">
                         <div id="infoAlternativas">
                             <span><em>Clique em uma casa e digite a letra:</em></span>
